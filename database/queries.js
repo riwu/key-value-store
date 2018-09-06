@@ -9,5 +9,14 @@ const conn = mysql.createPool({
 });
 
 module.exports = {
+  getObject: (key, timestamp) => conn
+    .query(
+      `SELECT value FROM data WHERE \`key\` = ?${
+        timestamp === undefined ? '' : ' AND timestamp <= ?'
+      } ORDER BY timestamp DESC LIMIT 1`,
+      [key, timestamp],
+    )
+    .then(([row]) => (row || {}).value),
+
   postObject: obj => conn.query('INSERT INTO data SET ?', obj),
 };
