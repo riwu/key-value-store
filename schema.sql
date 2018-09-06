@@ -9,6 +9,5 @@ CREATE TABLE `data` (
   `value` varchar(300) NOT NULL,
   `timestamp` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `timestamp_INDEX` (`timestamp`),
-  KEY `key_INDEX` (`key`)
+  UNIQUE KEY `data_UNIQUE` (`timestamp`,`key`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

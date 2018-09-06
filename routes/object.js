@@ -27,7 +27,13 @@ router.post('/', (req, res, next) => {
   queries
     .postObject(obj)
     .then(() => res.send(obj))
-    .catch(next);
+    .catch((e) => {
+      if (e.code === 'ER_DUP_ENTRY') {
+        res.status(409).send('There is already an entry with the same key and timestamp.');
+      } else {
+        next(e);
+      }
+    });
 });
 
 module.exports = router;
