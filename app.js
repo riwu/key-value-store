@@ -1,5 +1,6 @@
 const express = require('express');
 const logger = require('morgan');
+const object = require('./routes/object');
 
 const app = express();
 
@@ -22,5 +23,7 @@ app.use(
 );
 
 app.use(express.json());
+
+app.use('/object', object);
 
 module.exports = app;
