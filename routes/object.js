@@ -4,8 +4,13 @@ const queries = require('../database/queries');
 const router = express.Router();
 
 router.get('/:key', (req, res, next) => {
+  const { timestamp } = req.query;
+  if (timestamp !== undefined && isNaN(timestamp)) {
+    res.status(422).send('timestamp should be an integer');
+    return;
+  }
   queries
-    .getObject(req.params.key, req.query.timestamp)
+    .getObject(req.params.key, timestamp)
     .then((value) => {
       if (value === undefined) {
         res.sendStatus(404);
