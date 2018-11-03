@@ -2,7 +2,7 @@
 
 ## Endpoints
 
-`POST` http://key.wangriwu.com:4010/object
+`POST` https://a.wangriwu.com:4010/object
 
 Body: `{ mykey : value1 }`
 
@@ -16,7 +16,7 @@ Error response status code:
 
 ---
 
-`GET` http://key.wangriwu.com:4010/object/mykey?timestamp=1440568980
+`GET` https://a.wangriwu.com:4010/object/mykey?timestamp=1440568980
 
 Response: `{ value: value1 }`  
 `value1` is the matching entry with the largest `timestamp` that is less than or equal to the `timestamp` query option.  
